@@ -48,13 +48,44 @@ console.log(`-------------------------------------------------------------------
 
 
 // GAME DUE LOGIC
+// -------------------------- 1. Richiesta Input
+let chiediInput = richiestaUtenteInput();
 
+// ---------------------------2. Utente sceglie se Pari o Dispari
+let chiediInputPariDispari = richiestaUtenteInputPariDispari();
+console.log(chiediInputPariDispari);
+
+// ---------------------------3. rand computer
+let computerOttieniNumeroCasuale = generaNumeroCasuale();
+console.log(`Computer numero is: ${computerOttieniNumeroCasuale}`);
+let computerPariDispari;
+if (chiediInputPariDispari == "pari") {
+    computerPariDispari = "dispari";
+} else { 
+    computerPariDispari = "pari";
+}
+console.log(computerPariDispari);
+
+// ---------------------------4. troviamo la somma dei due dati User INput e COmputer randominput
+let sommaPariDispari = parseInt(chiediInput) + parseInt(computerOttieniNumeroCasuale);
+console.log(`la somma di User e Computer e': ${sommaPariDispari}`); 
+let randr = varVincitore();
+console.log(randr);
+if (chiediInputPariDispari == randr) {
+    console.log("USER WINNER");
+} else {
+    console.log("COMPUTER WINNER");
+}
+
+// ---------------------------5. controllo paridispari
+let ctrlPariDispari = controlloOddEven();
+
+// -----------------------funzioni---------------------------------------------------------------------
 // funzione richiesta utente  facciamo scegliere ai fanciulli e al computer un number swag
 function richiestaUtenteInput () {
     let swagInterrutore = true;
     let chiediInput;
     while(swagInterrutore == true) {
-        console.log("entrato inwhile"); 
         chiediInput = prompt("inserisci un numero:");
         if (chiediInput <= 5 && chiediInput > 0) {
             console.log(`Il numero inserito da User e': ${chiediInput}`);
@@ -65,86 +96,68 @@ function richiestaUtenteInput () {
     }
     return chiediInput;
 }
+
+// Funzioe Pari o dispair
+function richiestaUtenteInputPariDispari(){ 
+    let sceltaInput;   
+    while (true){
+        sceltaInput = prompt(`scegli se pari o dispari`);
+        console.log("entrato in while");
+        if (sceltaInput == "pari") {
+            console.log(`utente ha scelto ${sceltaInput}`);
+            break;
+        }else if (sceltaInput == "dispari"){
+            console.log(`utente ha scelto ${sceltaInput}`);
+            break;
+        }
+    }
+    return sceltaInput;
+}
+
+// funzione random winner
+function varVincitore() {
+    let veroFalso =  Math.floor((Math.random() * 2) + 1);
+    console.log(veroFalso);
+    if (veroFalso == 1) {
+        console.log("chi e' pari vince"); 
+        veroFalso = "pari";
+    }else {
+        console.log("chi e' dispari vince");
+        veroFalso = "dispari";
+    }
+    return veroFalso;
+}
 // funzione numero casuale
 function generaNumeroCasuale(){
     return Math.floor((Math.random() * 5) + 1);
 }
-
-
-
-
-
-console.log("pre-richiestainput");
-let chiediInput;
-console.log(chiediInput);
-chiediInput = richiestaUtenteInput();
-console.log(`secondo controllo - valore di inserito da user: ${chiediInput}`);
-
-console.log("-----USCITO DA WHILE");
-
-// valore per computer del number swag
-let computerOttieniNumeroCasuale = generaNumeroCasuale();
-console.log(`Computer numero is: ${computerOttieniNumeroCasuale}`);
-
-
-// funzione somma pari e dispari
-// troviamo la somma dei due dati User INput e COmputer randominput
-let sommaPariDispari = parseInt(chiediInput) + parseInt(computerOttieniNumeroCasuale);
-console.log(`la somma di User e Computer e': ${sommaPariDispari}`); 
-
-
+// Funzione ControlloEven
 function controlloOddEven() {
     sommaPariDispari = sommaPariDispari % 2;
-    console.log(sommaPariDispari);
     if (sommaPariDispari == 0){
-        console.log(`numero pari: ${sommaPariDispari}`);
+        console.log(`tot numero pari restp: ${sommaPariDispari}`);
     } else {
-        console.log(`numero dispari: ${sommaPariDispari}`);
+        console.log(`tot numero dispari resto: ${sommaPariDispari}`);
     }
-return sommaPariDispari;
 }
 
-let ctrlPariDispari = controlloOddEven();
-console.log(ctrlPariDispari);
 
-// funzione controllo vincitore MANCA QUALOSA??
-
-
-
-
-
-
-
-
-    // allenare collegam3ento con html~!
-
-
-
-
-
-
-
-
-
-
-
-
-    // function easyCipher(a) {
-        //     let b = -4;
-        //     let c = '';
-        //     for (let d = 0; d < a.length; d++) {
-            //         let e = a[d];
-            //         if (e.match(/[a-z]/i)) {
-                //             let f = a.charCodeAt(d);
-                //             if (f >= 65 && f <= 90)
-                    //                 e = String.fromCharCode((f - 65 + b) % 26 + 65);
-                //             else if (f >= 97 && f <= 122)
-                    //                 e = String.fromCharCode((f - 97 + b) % 26 + 97);
-                //         }
-            //         c += e;
-            //     }
-        //     return c;
-        // }
+// function easyCipher(a) {
+    //     let b = -4;
+    //     let c = '';
+    //     for (let d = 0; d < a.length; d++) {
+        //         let e = a[d];
+        //         if (e.match(/[a-z]/i)) {
+            //             let f = a.charCodeAt(d);
+            //             if (f >= 65 && f <= 90)
+                //                 e = String.fromCharCode((f - 65 + b) % 26 + 65);
+            //             else if (f >= 97 && f <= 122)
+                //                 e = String.fromCharCode((f - 97 + b) % 26 + 97);
+            //         }
+        //         c += e;
+        //     }
+    //     return c;
+    // }
 // 
     // 
     // console.log(easyCipher("wipsvmwspzmwimkecdwadaw"));
